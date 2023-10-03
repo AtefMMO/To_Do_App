@@ -14,6 +14,11 @@ class AppTheme{
   static Color lightBlack=Color(0xff3E4A59);
   static ThemeData lightTheme=ThemeData(
     scaffoldBackgroundColor: lightGreen,
-
+appBarTheme: AppBarTheme(backgroundColor: lightBlue,elevation: 0),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedItemColor:lightBlue,
+    unselectedItemColor: grey,
+    backgroundColor: Colors.transparent,elevation: 0
+  )
   );
 }
