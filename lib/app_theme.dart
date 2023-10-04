@@ -22,5 +22,17 @@ class AppTheme {
           backgroundColor: Colors.transparent,
           elevation: 0),
       floatingActionButtonTheme:
-          FloatingActionButtonThemeData(backgroundColor: lightBlue));
+          FloatingActionButtonThemeData(backgroundColor: lightBlue)
+  ,textTheme: TextTheme(
+      titleLarge: TextStyle(
+        fontWeight: FontWeight.bold,fontSize:20,color: white
+      ),
+    titleMedium: TextStyle(
+      fontWeight: FontWeight.bold,fontSize: 20,color: black
+    ),
+      titleSmall: TextStyle(
+         fontSize: 15,color: grey
+      )
+  )
+  );
 }

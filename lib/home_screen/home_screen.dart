@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> tapsList=[ListScreen(),SettingsScreen()];
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('To DO List')),
+      appBar: AppBar(title: Text('To DO List',style: Theme.of(context).textTheme.titleLarge,)),
       bottomNavigationBar: BottomAppBar(
         notchMargin: 6,
         shape: CircularNotchedRectangle(),
