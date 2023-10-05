@@ -8,10 +8,11 @@ class AddTaskScreen extends StatefulWidget {
 
 class _AddTaskScreenState extends State<AddTaskScreen> {
   @override
-  DateTime selectedDate=DateTime.now();
+  var formKey=GlobalKey<FormState>();
+  DateTime selectedDate = DateTime.now();
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(8),
       child: Column(
         children: [
           Text(
@@ -19,8 +20,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             style: Theme.of(context).textTheme.titleMedium,
           ),
           Padding(
-              padding: EdgeInsets.all(30),
+              padding: EdgeInsets.all(25),
               child: Form(
+                key:formKey ,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -30,11 +32,16 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         hintStyle: Theme.of(context).textTheme.titleSmall,
                         enabledBorder: UnderlineInputBorder(
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black)),
+                                BorderSide(width: 1, color: Colors.black))
                       ),
+                      validator: (value) {
+                        if(value==null||value.isEmpty){
+                          return 'Invalid Task title';
+                        }
+                      },
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
                     TextFormField(
                       decoration: InputDecoration(
@@ -45,9 +52,14 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                                 BorderSide(width: 1, color: Colors.black)),
                       ),
                       maxLines: 3,
+                      validator: (value) {
+                        if(value==null||value.isEmpty){
+                          return 'Invalid Task description';
+                        }
+                      },
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 20),
+                      padding: const EdgeInsets.only(top: 15),
                       child: Text(
                         'Select Date',
                         style: Theme.of(context)
@@ -61,7 +73,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         showCalender();
                       },
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 20),
+                        padding: const EdgeInsets.only(top: 15),
                         child: Text(
                           '${selectedDate.month}/${selectedDate.day}/${selectedDate.year}',
                           textAlign: TextAlign.center,
@@ -70,9 +82,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 20),
+                      padding: const EdgeInsets.only(top: 15),
                       child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            addTask();
+                          },
                           child: Text(
                             'Add',
                             style: TextStyle(fontSize: 18),
@@ -86,16 +100,20 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     );
   }
 
-  void showCalender() async{
-   var choosenDate=await showDatePicker(
+  void showCalender() async {
+    var chosenDate = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime.now(),
         lastDate: DateTime.now().add(Duration(days: 365)));
-   if(choosenDate!=null){
-    selectedDate=choosenDate;}
-   setState(() {
+    if (chosenDate != null) {
+      selectedDate = chosenDate;
+    }
+    setState(() {});
+  }
+  void addTask(){
+    if(formKey.currentState!.validate()){
 
-   });
+    }
   }
 }
