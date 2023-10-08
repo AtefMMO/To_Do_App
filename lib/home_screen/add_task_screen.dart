@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp/app_theme.dart';
+import 'package:todoapp/list_tap/add_task_to_firebase.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import '../list_tap/task_model_class.dart';
 
 class AddTaskScreen extends StatefulWidget {
   @override
@@ -10,6 +13,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   @override
   var formKey=GlobalKey<FormState>();
   DateTime selectedDate = DateTime.now();
+  String title='',description='';
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(8),
@@ -39,6 +43,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         if(value==null||value.isEmpty){
                           return 'Invalid Task title';
                         }
+                      },onChanged: (value) {
+                        title=value;
                       },
                     ),
                     SizedBox(
@@ -57,6 +63,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         if(value==null||value.isEmpty){
                           return 'Invalid Task description';
                         }
+                      },
+                      onChanged: (value) {
+                        description=value;
                       },
                     ),
                     Padding(
@@ -87,6 +96,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       child: ElevatedButton(
                           onPressed: () {
                             addTask();
+
                           },
                           child: Text(
                             'Add',
@@ -114,7 +124,23 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   }
   void addTask(){
     if(formKey.currentState!.validate()){
-
+      TaskData task=TaskData(title:title ,
+          description:description ,
+          date:selectedDate );
+FirebaseUtils.addTaskToFirebase(task).timeout(Duration(milliseconds: 500),onTimeout:
+    () {
+  print('Task Added Successfully');
+  Navigator.pop(context);
+  Fluttertoast.showToast(
+      msg: "Task Added Successfully",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: AppTheme.green,
+      textColor: Colors.white,
+      fontSize: 16.0
+  );
+},);
     }
   }
 }
