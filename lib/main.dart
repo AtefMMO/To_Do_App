@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:todoapp/app_theme.dart';
 import 'package:todoapp/home_screen/home_screen.dart';
 
+
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
