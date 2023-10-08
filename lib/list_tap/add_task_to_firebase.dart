@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/widgets.dart';
+
 
 import 'package:todoapp/list_tap/task_model_class.dart';
 
@@ -13,8 +13,8 @@ class FirebaseUtils {
 
  static Future<void> addTaskToFirebase(TaskData task) {//method that adds the task to the database
 var collection=getTaskCollection();//make a collection or get it if availble
-  var docRef=  collection.doc();//make doc of task
-    task.id=docRef.id;//auton generated id for the doc we need to assign it to the task data class
-    return docRef.set(task);//add it to the database
+  var doc=  collection.doc();//make doc of task
+    task.id=doc.id;//auto generated id for the doc we need to assign it to the task data class
+    return doc.set(task);//add it to the database
   }
 }
