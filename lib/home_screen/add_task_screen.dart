@@ -13,6 +13,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(8),
+      color: Theme.of(context).cardColor,
       child: Column(
         children: [
           Text(
@@ -65,7 +66,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         style: Theme.of(context)
                             .textTheme
                             .titleSmall!
-                            .copyWith(color: Colors.black),
+                            .copyWith(color: Colors.grey),
                       ),
                     ),
                     InkWell(

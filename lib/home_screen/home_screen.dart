@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(title: Text('To DO List',style: Theme.of(context).textTheme.titleLarge,)),
       bottomNavigationBar: BottomAppBar(
-        notchMargin: 6,
+        notchMargin: 8,
         shape: CircularNotchedRectangle(),
         child: BottomNavigationBar(
           onTap: (index) {

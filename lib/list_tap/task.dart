@@ -29,7 +29,7 @@ class Task extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(12),
           decoration: BoxDecoration(
-              color: AppTheme.white, borderRadius: BorderRadius.only(topRight:Radius.circular(12) ,bottomRight: Radius.circular(12))),
+              color: Theme.of(context).cardColor, borderRadius: BorderRadius.only(topRight:Radius.circular(12) ,bottomRight: Radius.circular(12))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
