@@ -56,22 +56,44 @@ class Task extends StatelessWidget {
                       Text(task.description??'',
                           style: Theme.of(context)
                               .textTheme
-                              .titleSmall!
-                              .copyWith(color: AppTheme.black))
+                              .titleSmall
+                              )
                     ],
                   ),
                 ),
               ),
-              InkWell(
-                onTap: () {},
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.04,
-                  width: MediaQuery.of(context).size.width * 0.15,
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(6)),
-                  child: Icon(Icons.check, color: AppTheme.white, size: 25),
-                ),
+              Column(
+                children: [
+                  InkWell(
+                    onTap: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.all(2),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.04,
+                        width: MediaQuery.of(context).size.width * 0.15,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.circular(6)),
+                        child: Icon(Icons.check, color: AppTheme.white, size: 25),
+                      ),
+                    ),
+                  ), InkWell(
+                    onTap: () {
+                     // showEditScreen();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(2),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.04,
+                        width: MediaQuery.of(context).size.width * 0.15,
+                        decoration: BoxDecoration(
+                            color: AppTheme.grey,
+                            borderRadius: BorderRadius.circular(6)),
+                        child: Icon(Icons.edit, color: AppTheme.white, size: 20),
+                      ),
+                    ),
+                  )
+                ],
               )
             ],
           ),
@@ -79,4 +101,8 @@ class Task extends StatelessWidget {
       ),
     );
   }
+
+  //void showEditScreen(BuildContext context) {
+ //   showModalBottomSheet(context: context, builder: (context) => ,)
+ // }
 }
