@@ -74,7 +74,7 @@ class Task extends StatelessWidget {
                         task.title??'',
                         style: task.isDone!?Theme.of(context).textTheme.titleMedium!.copyWith(color: AppTheme.green):Theme.of(context).textTheme.titleMedium,
                       ),
-                      Text(task.isDone!?'Done':task.description??'',
+                      Text(task.isDone!?'Done!':task.description??'',
                            style:task.isDone!?Theme.of(context).textTheme.titleMedium!.copyWith(color:AppTheme.green): Theme.of(context)
                               .textTheme
                               .titleSmall

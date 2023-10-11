@@ -128,7 +128,7 @@ class _EditScreenState extends State<EditScreen> {
                   }
                 },
                 child: Text(
-                  'Edit',
+                  'Save Changes',
                   style: Theme.of(context).textTheme.titleLarge,
                 )),
           )
