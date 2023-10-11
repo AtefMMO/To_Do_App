@@ -1,8 +1,12 @@
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
 import 'package:todoapp/list_tap/task_model_class.dart';
 
 class FirebaseUtils {
+
   static CollectionReference<TaskData> getTaskCollection() {
     //method that returns the collection of tasks in the data base to be able to make action on it
     return FirebaseFirestore.instance
@@ -33,4 +37,15 @@ class FirebaseUtils {
         .toList(); //takes the data inside each document and adds them to list of type task data
     return tasks;
   }
+  static void updateData(TaskData task){
+    var collection =
+    getTaskCollection();
+    var doc=collection.doc(task.id);//gets the specific document with the task id
+    doc.update(task.toJson());//updates the documents
+}
+static void deleteData(TaskData task){
+    var collection=getTaskCollection();
+    var doc=collection.doc(task.id);//deletes the task by its id
+    doc.delete();//deletes task
+}
 }

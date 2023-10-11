@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 import 'package:todoapp/app_theme.dart';
+import 'package:todoapp/list_tap/add_task_to_firebase.dart';
+import 'package:todoapp/list_tap/edit_screen.dart';
 import 'package:todoapp/list_tap/task_model_class.dart';
+
+import '../providers/list_provider.dart';
 
 class Task extends StatelessWidget {
   TaskData task;
+
   Task({required this.task});
   @override
   Widget build(BuildContext context) {
+    var provider=Provider.of<ListProvider>(context);
     return Container(
       margin: EdgeInsets.all(8),
       child: Slidable(
@@ -16,7 +24,20 @@ class Task extends StatelessWidget {
           motion: ScrollMotion(),
           children: [
             SlidableAction(
-              onPressed: (context) {},
+              onPressed: (context) {
+
+                FirebaseUtils.deleteData(task);//deletes task from db
+                provider.getTasksFromDb();
+                Fluttertoast.showToast(
+                    msg: "Task Deleted Successfully",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: AppTheme.red,
+                    textColor: Colors.white,
+                    fontSize: 16.0
+                );
+              },
               backgroundColor: AppTheme.red,
               icon: Icons.delete,
               label: 'Delete',
@@ -40,7 +61,7 @@ class Task extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.1,
                 width: MediaQuery.of(context).size.width * 0.01,
                 decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
+                    color: task.isDone!?AppTheme.green:Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(10)),
               ),
               Expanded(
@@ -51,10 +72,10 @@ class Task extends StatelessWidget {
                     children: [
                       Text(
                         task.title??'',
-                        style: Theme.of(context).textTheme.titleMedium,
+                        style: task.isDone!?Theme.of(context).textTheme.titleMedium!.copyWith(color: AppTheme.green):Theme.of(context).textTheme.titleMedium,
                       ),
-                      Text(task.description??'',
-                          style: Theme.of(context)
+                      Text(task.isDone!?'Done':task.description??'',
+                           style:task.isDone!?Theme.of(context).textTheme.titleMedium!.copyWith(color:AppTheme.green): Theme.of(context)
                               .textTheme
                               .titleSmall
                               )
@@ -64,32 +85,42 @@ class Task extends StatelessWidget {
               ),
               Column(
                 children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.04,
-                        width: MediaQuery.of(context).size.width * 0.15,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
-                            borderRadius: BorderRadius.circular(6)),
-                        child: Icon(Icons.check, color: AppTheme.white, size: 25),
+                  Visibility(
+                    visible: task.isDone!?false:true,
+                    child: InkWell(
+                      onTap: () {
+                        task.isDone=true;
+                        FirebaseUtils.updateData(task);
+                        provider.getTasksFromDb();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 0.04,
+                          width: MediaQuery.of(context).size.width * 0.15,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).primaryColor,
+                              borderRadius: BorderRadius.circular(6)),
+                          child: Icon(Icons.check, color: AppTheme.white, size: 25),
+                        ),
                       ),
                     ),
-                  ), InkWell(
-                    onTap: () {
-                     // showEditScreen();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.04,
-                        width: MediaQuery.of(context).size.width * 0.15,
-                        decoration: BoxDecoration(
-                            color: AppTheme.grey,
-                            borderRadius: BorderRadius.circular(6)),
-                        child: Icon(Icons.edit, color: AppTheme.white, size: 20),
+                  ), Visibility(
+                    visible: task.isDone!?false:true,
+                    child: InkWell(
+                      onTap: () {
+                        showEditScreen(context);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 0.04,
+                          width: MediaQuery.of(context).size.width * 0.15,
+                          decoration: BoxDecoration(
+                              color: AppTheme.grey,
+                              borderRadius: BorderRadius.circular(6)),
+                          child: Icon(Icons.edit, color: AppTheme.white, size: 20),
+                        ),
                       ),
                     ),
                   )
@@ -102,7 +133,7 @@ class Task extends StatelessWidget {
     );
   }
 
-  //void showEditScreen(BuildContext context) {
- //   showModalBottomSheet(context: context, builder: (context) => ,)
- // }
+  void showEditScreen(BuildContext context) {
+    showModalBottomSheet(context: context, builder: (context) => EditScreen(task: task,));
+  }
 }
