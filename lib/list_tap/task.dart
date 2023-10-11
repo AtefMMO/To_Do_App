@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todoapp/app_theme.dart';
+import 'package:todoapp/list_tap/task_model_class.dart';
 
 class Task extends StatelessWidget {
+  TaskData task;
+  Task({required this.task});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,10 +50,10 @@ class Task extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        'title',
+                        task.title??'',
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
-                      Text('description',
+                      Text(task.description??'',
                           style: Theme.of(context)
                               .textTheme
                               .titleSmall!

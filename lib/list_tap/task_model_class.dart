@@ -11,7 +11,7 @@ class TaskData{//data class used to save task in the data base
       'id':id,
       'title':title,
       'description':description,
-      'date':date!.microsecondsSinceEpoch,//time since 1970 in sec
+      'date':date?.millisecondsSinceEpoch,//time since 1970 in sec
       'isDone':isDone
     };
   }

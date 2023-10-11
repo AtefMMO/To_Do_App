@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todoapp/app_theme.dart';
 import 'package:todoapp/list_tap/add_task_to_firebase.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../list_tap/task_model_class.dart';
+import '../providers/list_provider.dart';
 
 class AddTaskScreen extends StatefulWidget {
   @override
@@ -14,7 +16,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   var formKey=GlobalKey<FormState>();
   DateTime selectedDate = DateTime.now();
   String title='',description='';
+//late ListProvider provider;
   Widget build(BuildContext context) {
+     //provider =Provider.of<ListProvider>(context);
     return Container(
       padding: EdgeInsets.all(8),
       color: Theme.of(context).cardColor,
@@ -124,6 +128,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   }
   void addTask(){
     if(formKey.currentState!.validate()){
+     var provider =Provider.of<ListProvider>(context,listen: false);
       TaskData task=TaskData(title:title ,
           description:description ,
           date:selectedDate );
@@ -131,6 +136,7 @@ FirebaseUtils.addTaskToFirebase(task).timeout(Duration(milliseconds: 500),onTime
     () {
   print('Task Added Successfully');
   Navigator.pop(context);
+  provider.getTasksFromDb();
   Fluttertoast.showToast(
       msg: "Task Added Successfully",
       toastLength: Toast.LENGTH_SHORT,
