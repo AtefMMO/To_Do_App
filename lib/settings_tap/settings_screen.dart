@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todoapp/app_theme.dart';
+import 'package:todoapp/providers/app_config_provider.dart';
 import 'package:todoapp/settings_tap/theme_sheet.dart';
 
 class SettingsScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    var provider =Provider.of<AppConfigProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -24,14 +28,14 @@ class SettingsScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.08,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
-                color: AppTheme.white,
+                color:  provider.appTheme==ThemeMode.light?Colors.white:Colors.grey,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Theme.of(context).primaryColor)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'LightMODE',
+                  provider.appTheme==ThemeMode.light?'Light Mode':'Dark Mode',
                   style: Theme.of(context)
                       .textTheme
                       .titleSmall!
