@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/app_theme.dart';
 import 'package:todoapp/home_screen/home_screen.dart';
+import 'package:todoapp/login_screen/login.dart';
+import 'package:todoapp/login_screen/register.dart';
 import 'package:todoapp/providers/app_config_provider.dart';
 import 'package:todoapp/providers/list_provider.dart';
 
@@ -25,9 +27,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var provider=Provider.of<AppConfigProvider>(context);
     return MaterialApp(
-      initialRoute: HomeScreen.RouteName,
+      initialRoute: RegisterScreen.RouteName,
       routes: {
         HomeScreen.RouteName: (context) => HomeScreen(),
+        LoginScreen.RouteName:(context)=>LoginScreen(),
+        RegisterScreen.RouteName:(context)=>RegisterScreen(),
       },
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.DarkTheme,
