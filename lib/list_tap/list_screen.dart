@@ -5,6 +5,7 @@ import 'package:todoapp/list_tap/add_task_to_firebase.dart';
 import 'package:todoapp/list_tap/task.dart';
 import 'package:todoapp/list_tap/task_model_class.dart';
 import 'package:todoapp/providers/app_config_provider.dart';
+import 'package:todoapp/providers/auth_provider.dart';
 import 'package:todoapp/providers/list_provider.dart';
 
 class ListScreen extends StatefulWidget {
@@ -17,6 +18,7 @@ class _ListScreenState extends State<ListScreen> {
   Widget build(BuildContext context) {
     var provider = Provider.of<ListProvider>(context);
     var provider2 = Provider.of<AppConfigProvider>(context);
+    var authProvider=Provider.of<AuthProvider>(context);
     return Column(
       children: [
         Stack(
@@ -31,7 +33,7 @@ class _ListScreenState extends State<ListScreen> {
               lastDate: DateTime.now().add(Duration(days: 365)),
               onDateSelected: (date) {
                 provider
-                    .changeSelectedDate(date); //now must change init date to
+                    .changeSelectedDate(date,authProvider.currentUser!.id!); //now must change init date to
                 //this bec on date selected the current date will change but it wonot
                 //work in the ui
                 //  print(provider.selectedDate);

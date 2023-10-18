@@ -6,8 +6,9 @@ import '../list_tap/task_model_class.dart';
 class ListProvider extends ChangeNotifier {
   List<TaskData> taskList = [];
   DateTime selectedDate = DateTime.now();
-  getTasksFromDb() async {
-    taskList = await FirebaseUtils.getTaskFromFireBase();
+  getTasksFromDb(String uid) async {
+
+    taskList = await FirebaseUtils.getTaskFromFireBase(uid);
 
     taskList = taskList.where((task) {
       if (task.date?.day == selectedDate.day &&
@@ -26,9 +27,9 @@ class ListProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void changeSelectedDate(DateTime newDate) {
+  void changeSelectedDate(DateTime newDate,String uid) {
     selectedDate = newDate;
-    getTasksFromDb();
+    getTasksFromDb(uid);
     notifyListeners();
   }
 }
