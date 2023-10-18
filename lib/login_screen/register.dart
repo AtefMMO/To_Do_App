@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:todoapp/login_screen/add_user_to_db.dart';
 import 'package:todoapp/login_screen/custom_text_form_field.dart';
+import 'package:todoapp/login_screen/loading_screen.dart';
 import 'package:todoapp/login_screen/login.dart';
 import 'package:todoapp/login_screen/user_data.dart';
 
@@ -129,7 +130,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: ElevatedButton(
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
+                     LoadingScreen.showLoadingScreen(context, 'Loading...', false);
                       if (await UserDb.AddUserToDb(user)) {
+                        Navigator.pop(context);
                         Navigator.pushReplacementNamed(
                             context, LoginScreen.RouteName);
                       } else {
@@ -141,6 +144,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             backgroundColor: AppTheme.red,
                             textColor: Colors.white,
                             fontSize: 16.0);
+                        Navigator.pop(context);
                       }
                     }
                   },
@@ -157,7 +161,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Already have an account?'),
+                  Text('Already have an account?',style: Theme.of(context).textTheme.titleSmall,),
                   InkWell(
                       onTap: () {
                         Navigator.pushReplacementNamed(

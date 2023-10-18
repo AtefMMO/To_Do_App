@@ -6,6 +6,8 @@ import 'package:todoapp/list_tap/list_screen.dart';
 import 'package:todoapp/providers/app_config_provider.dart';
 import 'package:todoapp/settings_tap/settings_screen.dart';
 
+import '../providers/auth_provider.dart';
+
 class HomeScreen extends StatefulWidget {
   static const String RouteName = 'HomeScreen';
 
@@ -19,8 +21,9 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> tapsList=[ListScreen(),SettingsScreen()];
   Widget build(BuildContext context) {
     var provider=Provider.of<AppConfigProvider>(context);
+    var authProvider=Provider.of<AuthProvider>(context);
     return Scaffold(
-      appBar: AppBar(title: Text('To DO List',style: Theme.of(context).textTheme.titleLarge,)),
+      appBar: AppBar(title: Text(selectedIndex==0?'To DO List ${authProvider.currentUser!.name}':'Settings',style: Theme.of(context).textTheme.titleLarge,)),
       bottomNavigationBar: BottomAppBar(
         notchMargin: 6,
         shape: CircularNotchedRectangle(),

@@ -7,6 +7,7 @@ import 'package:todoapp/list_tap/add_task_to_firebase.dart';
 import 'package:todoapp/list_tap/edit_screen.dart';
 import 'package:todoapp/list_tap/task_model_class.dart';
 
+import '../providers/auth_provider.dart';
 import '../providers/list_provider.dart';
 
 class Task extends StatelessWidget {
@@ -25,9 +26,9 @@ class Task extends StatelessWidget {
           children: [
             SlidableAction(
               onPressed: (context) {
-
-                FirebaseUtils.deleteData(task);//deletes task from db
-                provider.getTasksFromDb();
+                var authProvider=Provider.of<AuthProvider>(context,listen: false);
+                FirebaseUtils.deleteData(task,authProvider.currentUser!.id!);//deletes task from db
+                provider.getTasksFromDb(authProvider.currentUser!.id!);
                 Fluttertoast.showToast(
                     msg: "Task Deleted Successfully",
                     toastLength: Toast.LENGTH_SHORT,
@@ -89,9 +90,10 @@ class Task extends StatelessWidget {
                     visible: task.isDone!?false:true,
                     child: InkWell(
                       onTap: () {
+                        var authProvider=Provider.of<AuthProvider>(context,listen: false);
                         task.isDone=true;
-                        FirebaseUtils.updateData(task);
-                        provider.getTasksFromDb();
+                        FirebaseUtils.updateData(task,authProvider.currentUser!.id!);
+                        provider.getTasksFromDb(authProvider.currentUser!.id!);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(2),

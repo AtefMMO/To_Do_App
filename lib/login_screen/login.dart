@@ -1,11 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 import 'package:todoapp/home_screen/home_screen.dart';
 import 'package:todoapp/login_screen/add_user_to_db.dart';
+import 'package:todoapp/login_screen/loading_screen.dart';
 import 'package:todoapp/login_screen/register.dart';
 import 'package:todoapp/login_screen/user_data.dart';
 
 import '../app_theme.dart';
+import '../providers/auth_provider.dart';
 import 'custom_text_form_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -19,9 +23,9 @@ class _LoginScreenState extends State<LoginScreen> {
   var formKey = GlobalKey<FormState>();
   Users user = Users(name: '', email: '', password: '');
   bool isObsecure = true;
-
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(title: Text('Login'), centerTitle: true),
@@ -63,7 +67,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                     CustomTextFormField(
-                      keyboardType: TextInputType.visiblePassword,onChanged: (value) => user.password=value??'',
+                      keyboardType: TextInputType.visiblePassword,
+                      onChanged: (value) => user.password = value ?? '',
                       label: 'Password',
                       icon: InkWell(
                         child: Icon(Icons.remove_red_eye_rounded),
@@ -88,22 +93,26 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 6, left: 30, right: 30),
               child: ElevatedButton(
-                  onPressed: ()async {
+                  onPressed: () async {
                     if (formKey.currentState!.validate()) {
-                     String s= await UserDb.SignInUserFromDb(user);
-                      if (s=='ok'){
+
+                      LoadingScreen.showLoadingScreen(
+                          context, 'Loading...', false);
+                      String s = await UserDb.SignInUserFromDb(user,context);
+                      if (s == 'ok') {
+
+                        Fluttertoast.showToast(
+                            msg: "Login Successful",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: AppTheme.green,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                        Navigator.pop(context);
                         Navigator.pushReplacementNamed(
-                            context, HomeScreen.RouteName);}else if(s=='email')
-                              {
-                                Fluttertoast.showToast(
-                                    msg: "invalid User Credentials",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: AppTheme.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
-                              }else{
+                            context, HomeScreen.RouteName);
+                      } else if (s == 'email') {
                         Fluttertoast.showToast(
                             msg: "invalid User Credentials",
                             toastLength: Toast.LENGTH_SHORT,
@@ -112,6 +121,17 @@ class _LoginScreenState extends State<LoginScreen> {
                             backgroundColor: AppTheme.red,
                             textColor: Colors.white,
                             fontSize: 16.0);
+                        Navigator.pop(context);
+                      } else {
+                        Fluttertoast.showToast(
+                            msg: "invalid User Credentials",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: AppTheme.red,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                        Navigator.pop(context);
                       }
                     }
                   },
@@ -128,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Don\'t have an account?'),
+                  Text('Don\'t have an account?',style: Theme.of(context).textTheme.titleSmall,),
                   InkWell(
                       onTap: () {
                         Navigator.pushReplacementNamed(

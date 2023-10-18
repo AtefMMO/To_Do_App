@@ -7,6 +7,7 @@ import 'package:todoapp/list_tap/task_model_class.dart';
 import 'package:todoapp/providers/list_provider.dart';
 
 import '../app_theme.dart';
+import '../providers/auth_provider.dart';
 
 class EditScreen extends StatefulWidget {
   TaskData task;
@@ -111,11 +112,12 @@ class _EditScreenState extends State<EditScreen> {
             child: ElevatedButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
+                    var authProvider=Provider.of<AuthProvider>(context,listen: false);
                     var provider = Provider.of<ListProvider>(context,listen: false);//because called provider inside function
 //now we should change task in db
-                    FirebaseUtils.updateData(widget.task);
+                    FirebaseUtils.updateData(widget.task,authProvider.currentUser!.id!);
                     Navigator.pop(context);
-                    provider.getTasksFromDb();
+                    provider.getTasksFromDb(authProvider.currentUser!.id!);
                     Fluttertoast.showToast(
                         msg: "Task Edited Successfully",
                         toastLength: Toast.LENGTH_SHORT,

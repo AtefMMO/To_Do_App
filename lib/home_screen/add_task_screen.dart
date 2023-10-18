@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todoapp/app_theme.dart';
 import 'package:todoapp/list_tap/add_task_to_firebase.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:todoapp/providers/auth_provider.dart';
 import '../list_tap/task_model_class.dart';
 import '../providers/list_provider.dart';
 
@@ -13,12 +14,12 @@ class AddTaskScreen extends StatefulWidget {
 
 class _AddTaskScreenState extends State<AddTaskScreen> {
   @override
-  var formKey=GlobalKey<FormState>();
+  var formKey = GlobalKey<FormState>();
   DateTime selectedDate = DateTime.now();
-  String title='',description='';
+  String title = '', description = '';
 //late ListProvider provider;
   Widget build(BuildContext context) {
-     //provider =Provider.of<ListProvider>(context);
+    //provider =Provider.of<ListProvider>(context);
     return Container(
       padding: EdgeInsets.all(8),
       color: Theme.of(context).cardColor,
@@ -31,24 +32,24 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
           Padding(
               padding: EdgeInsets.all(25),
               child: Form(
-                key:formKey ,
+                key: formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     TextFormField(
                       decoration: InputDecoration(
-                        hintText: 'Enter Task title',
-                        hintStyle: Theme.of(context).textTheme.titleSmall,
-                        enabledBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(width: 1, color: Colors.black))
-                      ),
+                          hintText: 'Enter Task title',
+                          hintStyle: Theme.of(context).textTheme.titleSmall,
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(width: 1, color: Colors.black))),
                       validator: (value) {
-                        if(value==null||value.isEmpty){
+                        if (value == null || value.isEmpty) {
                           return 'Invalid Task title';
                         }
-                      },onChanged: (value) {
-                        title=value;
+                      },
+                      onChanged: (value) {
+                        title = value;
                       },
                     ),
                     SizedBox(
@@ -64,12 +65,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       ),
                       maxLines: 3,
                       validator: (value) {
-                        if(value==null||value.isEmpty){
+                        if (value == null || value.isEmpty) {
                           return 'Invalid Task description';
                         }
                       },
                       onChanged: (value) {
-                        description=value;
+                        description = value;
                       },
                     ),
                     Padding(
@@ -100,7 +101,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       child: ElevatedButton(
                           onPressed: () {
                             addTask();
-
                           },
                           child: Text(
                             'Add',
@@ -126,27 +126,26 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     }
     setState(() {});
   }
-  void addTask(){
-    if(formKey.currentState!.validate()){
-     var provider =Provider.of<ListProvider>(context,listen: false);
-      TaskData task=TaskData(title:title ,
-          description:description ,
-          date:selectedDate );
-FirebaseUtils.addTaskToFirebase(task).timeout(Duration(milliseconds: 500),onTimeout:
-    () {
-  print('Task Added Successfully');
-  Navigator.pop(context);
-  provider.getTasksFromDb();
-  Fluttertoast.showToast(
-      msg: "Task Added Successfully",
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      backgroundColor: AppTheme.green,
-      textColor: Colors.white,
-      fontSize: 16.0
-  );
-},);
+
+  void addTask() {
+    if (formKey.currentState!.validate()) {
+      var provider = Provider.of<ListProvider>(context, listen: false);
+      var authProvider=Provider.of<AuthProvider>(context,listen: false);
+      TaskData task =
+          TaskData(title: title, description: description, date: selectedDate);
+      FirebaseUtils.addTaskToFirebase(task,authProvider.currentUser!.id!)
+          .timeout(Duration(milliseconds: 500));
+      print('Task Added Successfully');
+      Navigator.pop(context);
+      provider.getTasksFromDb(authProvider.currentUser!.id!);
+      Fluttertoast.showToast(
+          msg: "Task Added Successfully",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: AppTheme.green,
+          textColor: Colors.white,
+          fontSize: 16.0);
     }
   }
 }

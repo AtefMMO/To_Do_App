@@ -24,7 +24,7 @@ class CustomTextFormField extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
               borderSide:
                   BorderSide(color: Theme.of(context).primaryColor, width: 3)),
-          label: Text('$label'),
+          label: Text('$label',style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Theme.of(context).primaryColor),),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide:
