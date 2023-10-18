@@ -1,4 +1,4 @@
-**App Title:** ToDo - Your To-Do List Companion
+**App Title:** ToDo - Your To-Do List Companion same as normal todo app but this one contains login and register screen done using firebase auth
 
 **Description:**
 
