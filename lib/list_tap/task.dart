@@ -6,7 +6,6 @@ import 'package:todoapp/app_theme.dart';
 import 'package:todoapp/list_tap/add_task_to_firebase.dart';
 import 'package:todoapp/list_tap/edit_screen.dart';
 import 'package:todoapp/list_tap/task_model_class.dart';
-
 import '../providers/auth_provider.dart';
 import '../providers/list_provider.dart';
 

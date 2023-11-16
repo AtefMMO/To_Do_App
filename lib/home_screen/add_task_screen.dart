@@ -20,97 +20,99 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 //late ListProvider provider;
   Widget build(BuildContext context) {
     //provider =Provider.of<ListProvider>(context);
-    return Container(
-      padding: EdgeInsets.all(8),
-      color: Theme.of(context).cardColor,
-      child: Column(
-        children: [
-          Text(
-            'Add new Task',
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          Padding(
-              padding: EdgeInsets.all(25),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                          hintText: 'Enter Task title',
+    return SingleChildScrollView(
+      child: Container(height: MediaQuery.of(context).size.height*0.6,
+        padding: EdgeInsets.all(8),
+        color: Theme.of(context).cardColor,
+        child: Column(
+          children: [
+            Text(
+              'Add new Task',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            Padding(
+                padding: EdgeInsets.all(25),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      TextFormField(
+                        decoration: InputDecoration(
+                            hintText: 'Enter Task title',
+                            hintStyle: Theme.of(context).textTheme.titleSmall,
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 1, color: Colors.black))),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Invalid Task title';
+                          }
+                        },
+                        onChanged: (value) {
+                          title = value;
+                        },
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: 'Enter Task description',
                           hintStyle: Theme.of(context).textTheme.titleSmall,
                           enabledBorder: UnderlineInputBorder(
                               borderSide:
-                                  BorderSide(width: 1, color: Colors.black))),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Invalid Task title';
-                        }
-                      },
-                      onChanged: (value) {
-                        title = value;
-                      },
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: 'Enter Task description',
-                        hintStyle: Theme.of(context).textTheme.titleSmall,
-                        enabledBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(width: 1, color: Colors.black)),
+                                  BorderSide(width: 1, color: Colors.black)),
+                        ),
+                        maxLines: 3,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Invalid Task description';
+                          }
+                        },
+                        onChanged: (value) {
+                          description = value;
+                        },
                       ),
-                      maxLines: 3,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Invalid Task description';
-                        }
-                      },
-                      onChanged: (value) {
-                        description = value;
-                      },
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: Text(
-                        'Select Date',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleSmall!
-                            .copyWith(color: Colors.grey),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        showCalender();
-                      },
-                      child: Padding(
+                      Padding(
                         padding: const EdgeInsets.only(top: 15),
                         child: Text(
-                          '${selectedDate.month}/${selectedDate.day}/${selectedDate.year}',
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.titleMedium,
+                          'Select Date',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(color: Colors.grey),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: ElevatedButton(
-                          onPressed: () {
-                            addTask();
-                          },
+                      InkWell(
+                        onTap: () {
+                          showCalender();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 15),
                           child: Text(
-                            'Add',
-                            style: TextStyle(fontSize: 18),
-                          )),
-                    )
-                  ],
-                ),
-              ))
-        ],
+                            '${selectedDate.month}/${selectedDate.day}/${selectedDate.year}',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: ElevatedButton(
+                            onPressed: () {
+                              addTask();
+                            },
+                            child: Text(
+                              'Add',
+                              style: TextStyle(fontSize: 18),
+                            )),
+                      )
+                    ],
+                  ),
+                ))
+          ],
+        ),
       ),
     );
   }

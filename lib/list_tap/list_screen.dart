@@ -1,9 +1,7 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todoapp/list_tap/add_task_to_firebase.dart';
 import 'package:todoapp/list_tap/task.dart';
-import 'package:todoapp/list_tap/task_model_class.dart';
 import 'package:todoapp/providers/app_config_provider.dart';
 import 'package:todoapp/providers/auth_provider.dart';
 import 'package:todoapp/providers/list_provider.dart';
