@@ -7,6 +7,7 @@ import 'package:todoapp/providers/app_config_provider.dart';
 import 'package:todoapp/settings_tap/settings_screen.dart';
 
 import '../providers/auth_provider.dart';
+import '../providers/list_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String RouteName = 'HomeScreen';
@@ -16,14 +17,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   int selectedIndex = 0;
-  List<Widget> tapsList=[ListScreen(),SettingsScreen()];
+
+  List<Widget> tapsList = [ListScreen(), SettingsScreen()];
   Widget build(BuildContext context) {
-    var provider=Provider.of<AppConfigProvider>(context);
-    var authProvider=Provider.of<AuthProvider>(context);
+   var provider = Provider.of<AppConfigProvider>(context);
+    var authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
-      appBar: AppBar(title: Text(selectedIndex==0?'To DO List ${authProvider.currentUser!.name}':'Settings',style: Theme.of(context).textTheme.titleLarge,)),
+      appBar: AppBar(
+          title: Text(
+        selectedIndex == 0
+            ? 'To DO List ${authProvider.currentUser!.name}'
+            : 'Settings',
+        style: Theme.of(context).textTheme.titleLarge,
+      )),
       bottomNavigationBar: BottomAppBar(
         notchMargin: 6,
         shape: CircularNotchedRectangle(),
@@ -42,19 +51,26 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-ShowAddTaskBottomSheet();
+          ShowAddTaskBottomSheet();
         },
         child: Icon(
           Icons.add,
           size: 30,
         ),
-        shape: StadiumBorder(side: BorderSide(color:provider.appTheme==ThemeMode.light? Colors.white:Colors.grey, width: 4)),
+        shape: StadiumBorder(
+            side: BorderSide(
+                color: provider.appTheme == ThemeMode.light
+                    ? Colors.white
+                    : Colors.grey,
+                width: 4)),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: tapsList[selectedIndex],
     );
   }
-ShowAddTaskBottomSheet(){
-  showModalBottomSheet(context: context, builder: (context)=>AddTaskScreen())  ;
+
+  ShowAddTaskBottomSheet() {
+    showModalBottomSheet(
+        context: context, builder: (context) => AddTaskScreen());
   }
 }

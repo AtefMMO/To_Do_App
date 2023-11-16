@@ -14,11 +14,21 @@ class ListScreen extends StatefulWidget {
 }
 
 class _ListScreenState extends State<ListScreen> {
+  late ListProvider listProvider;
+  late AuthProvider authProvider;
+  @override
+  void initState() {
+    super.initState();
+    listProvider = Provider.of<ListProvider>(context, listen: false);
+    authProvider = Provider.of<AuthProvider>(context, listen: false);
+    listProvider.getTasksFromDb(authProvider.currentUser!.id!);
+  }
+
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<ListProvider>(context);
-    var provider2 = Provider.of<AppConfigProvider>(context);
-    var authProvider=Provider.of<AuthProvider>(context);
+    listProvider = Provider.of<ListProvider>(context);
+    authProvider = Provider.of<AuthProvider>(context);
+    var provider = Provider.of<AppConfigProvider>(context);
     return Column(
       children: [
         Stack(
@@ -28,12 +38,14 @@ class _ListScreenState extends State<ListScreen> {
               height: MediaQuery.of(context).size.height * 0.14,
             ),
             CalendarTimeline(
-              initialDate: provider.selectedDate,
+              initialDate: listProvider.selectedDate,
               firstDate: DateTime.now().subtract(Duration(days: 365)),
               lastDate: DateTime.now().add(Duration(days: 365)),
               onDateSelected: (date) {
-                provider
-                    .changeSelectedDate(date,authProvider.currentUser!.id!); //now must change init date to
+                listProvider.changeSelectedDate(
+                    date,
+                    authProvider
+                        .currentUser!.id!); //now must change init date to
                 //this bec on date selected the current date will change but it wonot
                 //work in the ui
                 //  print(provider.selectedDate);
@@ -42,7 +54,9 @@ class _ListScreenState extends State<ListScreen> {
               monthColor: Colors.black,
               dayColor: Colors.black,
               activeDayColor: Colors.black,
-              activeBackgroundDayColor:provider2.appTheme==ThemeMode.light? Colors.white:Colors.grey,
+              activeBackgroundDayColor: provider.appTheme == ThemeMode.light
+                  ? Colors.white
+                  : Colors.grey,
               dotsColor: Color(0xFF333A47),
               selectableDayPredicate: (date) => true,
               locale: 'en_ISO',
@@ -54,10 +68,10 @@ class _ListScreenState extends State<ListScreen> {
           child: ListView.builder(
             itemBuilder: (context, index) {
               return Task(
-                task: provider.taskList[index],
+                task: listProvider.taskList[index],
               );
             },
-            itemCount: provider.taskList.length,
+            itemCount: listProvider.taskList.length,
           ),
         )
       ],
