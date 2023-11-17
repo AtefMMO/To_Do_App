@@ -37,7 +37,6 @@ A feature-rich ToDo app built with Flutter and Firebase, providing a seamless ta
 3.**Install dependencies:**
 
 ```bash
-Copy code
 flutter pub get
 ```
 4.**Run the app:**
