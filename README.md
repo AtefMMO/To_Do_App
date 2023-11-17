@@ -31,16 +31,17 @@ A feature-rich ToDo app built with Flutter and Firebase, providing a seamless ta
 
 2.**Navigate to the project folder:**
 
-```bash
-cd todo-app
-
+   ```bash
+   cd todo-app
+```
 3.**Install dependencies:**
 
 ```bash
 Copy code
 flutter pub get
-
+```
 4.**Run the app:**
 
 ```bash
 flutter run
+```
