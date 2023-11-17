@@ -18,9 +18,9 @@ A feature-rich ToDo app built with Flutter and Firebase, providing a seamless ta
 
 ## Screenshots
 
-![Screenshot 1](/screenshots/screenshot1.png)
-![Screenshot 2](/screenshots/screenshot2.png)
-![Screenshot 3](/screenshots/screenshot3.png)
+<img src="/screenShots/addTask.jpeg" alt="Screenshot 1" height="400px">
+<img src="/screenshots/screenshot2.png" alt="Screenshot 2" height="400px">
+<img src="/screenshots/screenshot3.png" alt="Screenshot 3" height="400px">
 
 ## Getting Started
 
