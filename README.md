@@ -18,44 +18,41 @@ A feature-rich ToDo app built with Flutter and Firebase, providing a seamless ta
 
 ## Screenshots
 
-*Splash Screen*
-<img src="/screenShots/splashScreen.jpeg"  height="400px">
+### Splash Screen
+![Splash Screen](/screenShots/splashScreen.jpeg)
 
+### Login
+![Login](/screenShots/Login.jpeg)
 
-*Login*
-<img src="/screenShots/Login.jpeg"  height="400px">
+### Register
+![Register](/screenShots/Register.jpeg)
 
+### Task Tap
+![Task List - Light Mode](/screenShots/taskList.jpeg)
+![Task List - Dark Mode](/screenShots/taskListDark.jpeg)
 
-*Register*
-<img src="/screenShots/Register.jpeg"  height="400px">
+### Add Task
+![Add Task](/screenShots/addTask.jpeg)
+![Calendar](/screenShots/calender.jpeg)
 
+### Delete Task
+![Delete Task](/screenShots/deleteTask.jpeg)
 
-*Task tap*
-<img src="/screenShots/taskList.jpeg"  height="400px">
-<img src="/screenShots/taskListDark.jpeg"  height="400px">
+### Edit Task
+![Edit Task](/screenShots/editTask.jpeg)
 
+### Task Done
+![Task Done](/screenShots/taskDone.jpeg)
 
-*Add task*
-<img src="/screenShots/addTask.jpeg" height="400px">
-<img src="/screenShots/calender.jpeg" height="400px">
+### Settings Tap
+![Settings Tap](/screenShots/settingsTap.jpeg)
+![Settings - Dark Mode](/screenShots/settingsDarkMode.jpeg)
 
+## Getting Started
 
-*Delete task*  
-<img src="/screenShots/deleteTask.jpeg"  height="400px">
-
-
-*Edit task*  
-<img src="/screenShots/editTask.jpeg"  height="400px">  
-
-
-*Task done*  
-<img src="/screenShots/taskDone.jpeg"  height="400px">  
-
-
-*Settings tap*
-<img src="/screenShots/settingsTap.jpeg"  height="400px">
-<img src="/screenShots/settingsDarkMode.jpeg"  height="400px">
-
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/todo-app.git
 
 ## Getting Started
 
