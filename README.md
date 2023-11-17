@@ -29,18 +29,18 @@ A feature-rich ToDo app built with Flutter and Firebase, providing a seamless ta
    ```bash
    git clone https://github.com/your-username/todo-app.git
 
-Navigate to the project folder:
+2.**Navigate to the project folder:**
 
-bash
-Copy code
+```bash
 cd todo-app
-Install dependencies:
 
-bash
+3.**Install dependencies:**
+
+```bash
 Copy code
 flutter pub get
-Run the app:
 
-bash
-Copy code
+4.**Run the app:**
+
+```bash
 flutter run
