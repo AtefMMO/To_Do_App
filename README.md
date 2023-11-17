@@ -19,34 +19,34 @@ A feature-rich ToDo app built with Flutter and Firebase, providing a seamless ta
 ## Screenshots
 
 ### Splash Screen
-<img src="/screenShots/splashScreen.jpeg"  height="400px">
+<img src="/screenShots/splashScreen.jpeg"  height="450px">
 
 ### Login
-<img src="/screenShots/Login.jpeg"  height="400px">
+<img src="/screenShots/Login.jpeg"  height="450px">
 
 ### Register
-<img src="/screenShots/Register.jpeg"  height="400px">
+<img src="/screenShots/Register.jpeg"  height="450px">
 
 ### Task Tap
-<img src="/screenShots/taskList.jpeg"  height="400px">
-<img src="/screenShots/taskListDark.jpeg"  height="400px">
+<img src="/screenShots/taskList.jpeg"  height="450px">
+<img src="/screenShots/taskListDark.jpeg"  height="450px">
 
 ### Add Task
-<img src="/screenShots/addTask.jpeg" height="400px">
-<img src="/screenShots/calender.jpeg" height="400px">
+<img src="/screenShots/addTask.jpeg" height="450px">
+<img src="/screenShots/calender.jpeg" height="450px">
 
 ### Delete Task
-<img src="/screenShots/deleteTask.jpeg"  height="400px">
+<img src="/screenShots/deleteTask.jpeg"  height="450px">
 
 ### Edit Task
-<img src="/screenShots/editTask.jpeg"  height="400px">
+<img src="/screenShots/editTask.jpeg"  height="450px">
 
 ### Task Done
-<img src="/screenShots/taskDone.jpeg"  height="400px">
+<img src="/screenShots/taskDone.jpeg"  height="450px">
 
 ### Settings Tap
-<img src="/screenShots/settingsTap.jpeg"  height="400px" width="400px">
-<img src="/screenShots/settingsDarkMode.jpeg"  height="400px">
+<img src="/screenShots/settingsTap.jpeg"  height="450px">
+<img src="/screenShots/settingsDarkMode.jpeg"  height="450px">
 
 ## Getting Started
 
