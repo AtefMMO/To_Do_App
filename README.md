@@ -45,14 +45,8 @@ A feature-rich ToDo app built with Flutter and Firebase, providing a seamless ta
 <img src="/screenShots/taskDone.jpeg"  height="400px">
 
 ### Settings Tap
-<img src="/screenShots/settingsTap.jpeg"  height="400px">
+<img src="/screenShots/settingsTap.jpeg"  height="400px" width="400px">
 <img src="/screenShots/settingsDarkMode.jpeg"  height="400px">
-
-## Getting Started
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/your-username/todo-app.git
 
 ## Getting Started
 
