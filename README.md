@@ -1,4 +1,4 @@
-**App Title:** ToDo - Your To-Do List Companion
+**App Title:** ToDo - Your To-Do List Companion this one runs offline doesnot need auth
 
 **Description:**
 
