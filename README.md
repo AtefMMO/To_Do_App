@@ -1,28 +1,46 @@
-**App Title:** ToDo - Your To-Do List Companion same as normal todo app but this one contains login and register screen done using firebase auth
+# ToDo App
 
-**Description:**
+A feature-rich ToDo app built with Flutter and Firebase, providing a seamless task management experience with authentication and cloud storage.
 
-ToDo is the ultimate companion for managing your daily tasks, to-do lists, and productivity. This Flutter app simplifies your life by helping you stay organized, whether you're at work, school, or home. Here's how TaskTracker can make your day more efficient:
+## Features
 
-**1. Intuitive Task Management:**
-   - Easily create, edit, and delete tasks with a user-friendly interface.
-   - Organize tasks into categories or lists for better clarity.
-   - Prioritize tasks with due dates.
+- **User Authentication**: Secure user authentication using Firebase Auth ensures a personalized experience for each user.
 
-**2. Reminders and Notifications:**
-   - Set reminders for important tasks, so you never miss a deadline.
-   - Receive notifications to keep you on track, even when the app is closed.
+- **Task Management**: View, add, edit, and delete tasks effortlessly. Each task includes a title, description, and due date.
 
-**3. Task Completion Tracking:**
-   - Mark tasks as completed to visualize your progress and achievements.
+- **Calendar Integration**: Intuitive calendar interface for a quick overview of tasks scheduled for each day. Navigate seamlessly between months and years.
 
-**4. Customization and Personalization:**
-   - Choose from a range of themes and styles to tailor the app to your preferences.
-   - Create custom task categories and labels to match your workflow.
+- **Theme Customization**: Choose between light and dark themes to suit your preferences. The app utilizes the Provider package for efficient state management.
 
-**5. Secure and Synchronized:**
-   - Safeguard your tasks with secure cloud backup and synchronization across devices.
-   - Access your to-do lists on your smartphone, tablet, or computer seamlessly.
+- **Slidable Actions**: Easily mark tasks as completed, edit details, or delete them with smooth sliding actions using the Slidable package.
 
+- **Firebase Firestore Integration**: Tasks are securely stored in Firebase Firestore, ensuring data persistence and synchronization across devices.
 
-ToDo is your go-to app for managing tasks and achieving your goals. Whether it's work-related projects, daily chores, or personal aspirations, ToDo empowers you to stay organized and in control of your time. Download TaskTracker today and experience the benefits of efficient task management.
+## Screenshots
+
+![Screenshot 1](/screenshots/screenshot1.png)
+![Screenshot 2](/screenshots/screenshot2.png)
+![Screenshot 3](/screenshots/screenshot3.png)
+
+## Getting Started
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/your-username/todo-app.git
+
+2.**Navigate to the project folder:**
+
+   ```bash
+   cd todo-app
+```
+3.**Install dependencies:**
+
+```bash
+flutter pub get
+```
+4.**Run the app:**
+
+```bash
+flutter run
+```
