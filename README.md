@@ -19,34 +19,34 @@ A feature-rich ToDo app built with Flutter and Firebase, providing a seamless ta
 ## Screenshots
 
 ### Splash Screen
-![Splash Screen](/screenShots/splashScreen.jpeg)
+<img src="/screenShots/splashScreen.jpeg"  height="400px">
 
 ### Login
-![Login](/screenShots/Login.jpeg)
+<img src="/screenShots/Login.jpeg"  height="400px">
 
 ### Register
-![Register](/screenShots/Register.jpeg)
+<img src="/screenShots/Register.jpeg"  height="400px">
 
 ### Task Tap
-![Task List - Light Mode](/screenShots/taskList.jpeg)
-![Task List - Dark Mode](/screenShots/taskListDark.jpeg)
+<img src="/screenShots/taskList.jpeg"  height="400px">
+<img src="/screenShots/taskListDark.jpeg"  height="400px">
 
 ### Add Task
-![Add Task](/screenShots/addTask.jpeg)
-![Calendar](/screenShots/calender.jpeg)
+<img src="/screenShots/addTask.jpeg" height="400px">
+<img src="/screenShots/calender.jpeg" height="400px">
 
 ### Delete Task
-![Delete Task](/screenShots/deleteTask.jpeg)
+<img src="/screenShots/deleteTask.jpeg"  height="400px">
 
 ### Edit Task
-![Edit Task](/screenShots/editTask.jpeg)
+<img src="/screenShots/editTask.jpeg"  height="400px">
 
 ### Task Done
-![Task Done](/screenShots/taskDone.jpeg)
+<img src="/screenShots/taskDone.jpeg"  height="400px">
 
 ### Settings Tap
-![Settings Tap](/screenShots/settingsTap.jpeg)
-![Settings - Dark Mode](/screenShots/settingsDarkMode.jpeg)
+<img src="/screenShots/settingsTap.jpeg"  height="400px">
+<img src="/screenShots/settingsDarkMode.jpeg"  height="400px">
 
 ## Getting Started
 
