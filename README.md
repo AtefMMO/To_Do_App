@@ -40,21 +40,21 @@ A feature-rich ToDo app built with Flutter and Firebase, providing a seamless ta
 <img src="/screenShots/calender.jpeg" height="400px">
 
 
-*Delete task*
+*Delete task*  
 <img src="/screenShots/deleteTask.jpeg"  height="400px">
 
 
-*Edit task*
-<img src="/screenShots/editTask.jpeg"  height="400px">
+*Edit task*  
+<img src="/screenShots/editTask.jpeg"  height="400px">  
 
 
-*Task done*
-<img src="/screenShots/taskDone.jpeg"  height="400px">
+*Task done*  
+<img src="/screenShots/taskDone.jpeg"  height="400px">  
 
 
 *Settings tap*
 <img src="/screenShots/settingsTap.jpeg"  height="400px">
-<img src="/screenShots/settingsTapDark.jpeg"  height="400px">
+<img src="/screenShots/settingsDarkMode.jpeg"  height="400px">
 
 
 ## Getting Started
