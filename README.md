@@ -17,27 +17,46 @@ A feature-rich ToDo app built with Flutter and Firebase, providing a seamless ta
 - **Firebase Firestore Integration**: Tasks are securely stored in Firebase Firestore, ensuring data persistence and synchronization across devices.
 
 ## Screenshots
+
 *Splash Screen*
 <img src="/screenShots/splashScreen.jpeg"  height="400px">
+
+
 *Login*
 <img src="/screenShots/Login.jpeg"  height="400px">
+
+
 *Register*
 <img src="/screenShots/Register.jpeg"  height="400px">
+
+
 *Task tap*
 <img src="/screenShots/taskList.jpeg"  height="400px">
 <img src="/screenShots/taskListDark.jpeg"  height="400px">
+
+
 *Add task*
 <img src="/screenShots/addTask.jpeg" height="400px">
 <img src="/screenShots/calender.jpeg" height="400px">
+
+
 *Delete task*
 <img src="/screenShots/deleteTask.jpeg"  height="400px">
+
+
 *Edit task*
 <img src="/screenShots/editTask.jpeg"  height="400px">
+
+
 *Task done*
 <img src="/screenShots/taskDone.jpeg"  height="400px">
+
+
 *Settings tap*
 <img src="/screenShots/settingsTap.jpeg"  height="400px">
 <img src="/screenShots/settingsTapDark.jpeg"  height="400px">
+
+
 ## Getting Started
 
 1. **Clone the repository:**
