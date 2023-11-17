@@ -1,5 +1,4 @@
-**App Title:** ToDo - Your To-Do List Companion same as normal todo app but this one contains login and register screen done using firebase auth
-
+**App Title:** ToDo - Your To-Do List Companion 
 **Description:**
 
 ToDo is the ultimate companion for managing your daily tasks, to-do lists, and productivity. This Flutter app simplifies your life by helping you stay organized, whether you're at work, school, or home. Here's how TaskTracker can make your day more efficient:
