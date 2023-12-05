@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/list_tap/add_task_to_firebase.dart';
-import 'package:todoapp/list_tap/task.dart';
 import 'package:todoapp/list_tap/task_model_class.dart';
 import 'package:todoapp/providers/list_provider.dart';
-
 import '../app_theme.dart';
 import '../providers/auth_provider.dart';
-
 class EditScreen extends StatefulWidget {
   TaskData task;
   EditScreen({required this.task});
@@ -17,13 +14,10 @@ class EditScreen extends StatefulWidget {
 }
 
 class _EditScreenState extends State<EditScreen> {
-
-
   var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       color: Theme.of(context).cardColor,
       child: Column(
@@ -112,10 +106,14 @@ class _EditScreenState extends State<EditScreen> {
             child: ElevatedButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    var authProvider=Provider.of<AuthProvider>(context,listen: false);
-                    var provider = Provider.of<ListProvider>(context,listen: false);//because called provider inside function
+                    var authProvider =
+                        Provider.of<AuthProvider>(context, listen: false);
+                    var provider = Provider.of<ListProvider>(context,
+                        listen:
+                            false); //because called provider inside function
 //now we should change task in db
-                    FirebaseUtils.updateData(widget.task,authProvider.currentUser!.id!);
+                    FirebaseUtils.updateData(
+                        widget.task, authProvider.currentUser!.id!);
                     Navigator.pop(context);
                     provider.getTasksFromDb(authProvider.currentUser!.id!);
                     Fluttertoast.showToast(
@@ -125,8 +123,7 @@ class _EditScreenState extends State<EditScreen> {
                         timeInSecForIosWeb: 1,
                         backgroundColor: AppTheme.green,
                         textColor: Colors.white,
-                        fontSize: 16.0
-                    );
+                        fontSize: 16.0);
                   }
                 },
                 child: Text(

@@ -21,7 +21,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   Widget build(BuildContext context) {
     //provider =Provider.of<ListProvider>(context);
     return SingleChildScrollView(
-      child: Container(height: MediaQuery.of(context).size.height*0.6,
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.6,
         padding: EdgeInsets.all(8),
         color: Theme.of(context).cardColor,
         child: Column(
@@ -132,10 +133,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   void addTask() {
     if (formKey.currentState!.validate()) {
       var provider = Provider.of<ListProvider>(context, listen: false);
-      var authProvider=Provider.of<AuthProvider>(context,listen: false);
+      var authProvider = Provider.of<AuthProvider>(context, listen: false);
       TaskData task =
           TaskData(title: title, description: description, date: selectedDate);
-      FirebaseUtils.addTaskToFirebase(task,authProvider.currentUser!.id!)
+      FirebaseUtils.addTaskToFirebase(task, authProvider.currentUser!.id!)
           .timeout(Duration(milliseconds: 500));
       print('Task Added Successfully');
       Navigator.pop(context);

@@ -1,9 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/app_theme.dart';
-import 'package:todoapp/list_tap/add_task_to_firebase.dart';
-import 'package:todoapp/login_screen/add_user_to_db.dart';
-import 'package:todoapp/login_screen/firestore_user.dart';
+
+import 'package:todoapp/firebase_auth/firestore_user.dart';
 import 'package:todoapp/login_screen/login.dart';
 import 'package:todoapp/providers/app_config_provider.dart';
 import 'package:todoapp/settings_tap/theme_sheet.dart';
@@ -76,7 +76,10 @@ class SettingsScreen extends StatelessWidget {
                 vertical: MediaQuery.of(context).size.width * 0.1,
                 horizontal: MediaQuery.of(context).size.height * 0.040),
             decoration: BoxDecoration(
-                color: provider.appTheme==ThemeMode.light?AppTheme.white:Colors.grey, borderRadius: BorderRadius.circular(20)),
+                color: provider.appTheme == ThemeMode.light
+                    ? AppTheme.white
+                    : Colors.grey,
+                borderRadius: BorderRadius.circular(20)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -100,8 +103,8 @@ class SettingsScreen extends StatelessWidget {
                       children: [
                         ElevatedButton(
                             onPressed: () {
-                              listProvider.taskList=[];
-                              listProvider.selectedDate=DateTime.now();
+                              listProvider.taskList = [];
+                              listProvider.selectedDate = DateTime.now();
                               Navigator.pushReplacementNamed(
                                   context, LoginScreen.RouteName);
                             },
@@ -141,10 +144,11 @@ class SettingsScreen extends StatelessWidget {
                                                         .deleteUserFromDb(
                                                             authProvider
                                                                 .currentUser!);
-                                                    UserDb.deleteUser();
+                                                    deleteUser();
 
-listProvider.taskList=[];
-listProvider.selectedDate=DateTime.now();
+                                                    listProvider.taskList = [];
+                                                    listProvider.selectedDate =
+                                                        DateTime.now();
                                                     Navigator
                                                         .pushReplacementNamed(
                                                             context,
@@ -184,6 +188,10 @@ listProvider.selectedDate=DateTime.now();
         )
       ],
     );
+  }
+
+  static Future<void> deleteUser() async {
+    FirebaseAuth.instance.currentUser!.delete();
   }
 
   void showThemeSheet(BuildContext context) {

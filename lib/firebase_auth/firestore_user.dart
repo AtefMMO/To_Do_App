@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:todoapp/login_screen/user_data.dart';
+import 'package:todoapp/firebase_auth/user_data.dart';
 
 import '../list_tap/task_model_class.dart';
 

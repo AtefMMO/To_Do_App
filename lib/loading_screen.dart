@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoadingScreen {
-  static Future<dynamic> showLoadingScreen(BuildContext context,String text,bool dismissible) {
+  static Future<dynamic> showLoadingScreen(
+      BuildContext context, String text, bool dismissible) {
     return showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -15,6 +16,7 @@ class LoadingScreen {
                   Text(text)
                 ],
               ),
-            ),barrierDismissible: dismissible);
+            ),
+        barrierDismissible: dismissible);
   }
 }

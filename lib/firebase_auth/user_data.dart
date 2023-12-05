@@ -7,7 +7,7 @@ class Users {
 }
 
 class MyUser {
-  static const String collectionName='user';
+  static const String collectionName = 'user';
   String? name;
   String? email;
   String? id;

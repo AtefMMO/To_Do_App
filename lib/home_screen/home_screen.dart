@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todoapp/app_theme.dart';
 import 'package:todoapp/home_screen/add_task_screen.dart';
 import 'package:todoapp/list_tap/list_screen.dart';
 import 'package:todoapp/providers/app_config_provider.dart';
 import 'package:todoapp/settings_tap/settings_screen.dart';
-
 import '../providers/auth_provider.dart';
-import '../providers/list_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String RouteName = 'HomeScreen';
@@ -17,13 +14,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   int selectedIndex = 0;
 
   List<Widget> tapsList = [ListScreen(), SettingsScreen()];
   Widget build(BuildContext context) {
-   var provider = Provider.of<AppConfigProvider>(context);
+    var provider = Provider.of<AppConfigProvider>(context);
     var authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       appBar: AppBar(

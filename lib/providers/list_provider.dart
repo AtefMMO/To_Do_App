@@ -7,7 +7,6 @@ class ListProvider extends ChangeNotifier {
   List<TaskData> taskList = [];
   DateTime selectedDate = DateTime.now();
   getTasksFromDb(String uid) async {
-
     taskList = await FirebaseUtils.getTaskFromFireBase(uid);
 
     taskList = taskList.where((task) {
@@ -27,7 +26,7 @@ class ListProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void changeSelectedDate(DateTime newDate,String uid) {
+  void changeSelectedDate(DateTime newDate, String uid) {
     selectedDate = newDate;
     getTasksFromDb(uid);
     notifyListeners();

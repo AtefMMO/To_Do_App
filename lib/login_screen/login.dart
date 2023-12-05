@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/home_screen/home_screen.dart';
-import 'package:todoapp/login_screen/add_user_to_db.dart';
-import 'package:todoapp/login_screen/loading_screen.dart';
-import 'package:todoapp/login_screen/register.dart';
-import 'package:todoapp/login_screen/user_data.dart';
+import 'package:todoapp/loading_screen.dart';
+import 'package:todoapp/register_screen/register.dart';
+import 'package:todoapp/firebase_auth/user_data.dart';
 
 import '../app_theme.dart';
+import '../firebase_auth/firestore_user.dart';
 import '../providers/auth_provider.dart';
-import 'custom_text_form_field.dart';
+import '../custom_text_form_field.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String RouteName = 'LoginScreen';
@@ -25,7 +25,6 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isObsecure = true;
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(title: Text('Login'), centerTitle: true),
@@ -95,12 +94,10 @@ class _LoginScreenState extends State<LoginScreen> {
               child: ElevatedButton(
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
-
                       LoadingScreen.showLoadingScreen(
                           context, 'Loading...', false);
-                      String s = await UserDb.SignInUserFromDb(user,context);
+                      String s = await SignInUserFromDb(user, context);
                       if (s == 'ok') {
-
                         Fluttertoast.showToast(
                             msg: "Login Successful",
                             toastLength: Toast.LENGTH_SHORT,
@@ -148,7 +145,10 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Don\'t have an account?',style: Theme.of(context).textTheme.titleSmall,),
+                  Text(
+                    'Don\'t have an account?',
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
                   InkWell(
                       onTap: () {
                         Navigator.pushReplacementNamed(
@@ -169,4 +169,40 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+  static Future<String> SignInUserFromDb(
+      Users user, BuildContext context) async {
+    bool wrongPass = false;
+    bool wrongEmail = false;
+    try {
+      var authProvider = Provider.of<AuthProvider>(context, listen: false);
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: user.email, password: user.password);
+      var newUser =
+      await UserFirebaseUtils.readUserFromDb(credential.user!.uid);
+
+      authProvider.changeUser(
+          MyUser(email: newUser!.email, name: newUser!.name, id: newUser!.id));
+      print('sign in success');
+      print(credential.user!.uid);
+    } on FirebaseAuthException catch (e) {
+      wrongEmail = true;
+      wrongPass = true;
+      if (e.code == 'user-not-found') {
+        wrongEmail = true;
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        wrongPass = true;
+        print('Wrong password provided for that user.');
+      }
+    }
+    if (wrongEmail) {
+      return 'email';
+    }
+    if (wrongPass) {
+      return 'pass';
+    }
+    return 'ok';
+  }
+
 }

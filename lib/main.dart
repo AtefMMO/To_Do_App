@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:todoapp/app_theme.dart';
 import 'package:todoapp/home_screen/home_screen.dart';
 import 'package:todoapp/login_screen/login.dart';
-import 'package:todoapp/login_screen/register.dart';
+import 'package:todoapp/register_screen/register.dart';
 import 'package:todoapp/providers/app_config_provider.dart';
 import 'package:todoapp/providers/auth_provider.dart';
 import 'package:todoapp/providers/list_provider.dart';

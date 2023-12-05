@@ -12,7 +12,7 @@ class AppTheme {
   static Color lightGreen = Color(0xffDFECDB);
   static Color darkBlue = Color(0xff060E1E);
   static Color lightBlack = Color(0xff3E4A59);
-static Color containerColor=Color(0xff141922);
+  static Color containerColor = Color(0xff141922);
   static ThemeData lightTheme = ThemeData(
       primaryColor: lightBlue,
       cardColor: white,
@@ -24,19 +24,13 @@ static Color containerColor=Color(0xff141922);
           backgroundColor: Colors.transparent,
           elevation: 0),
       floatingActionButtonTheme:
-          FloatingActionButtonThemeData(backgroundColor: lightBlue)
-  ,textTheme: TextTheme(
-      titleLarge: TextStyle(
-        fontWeight: FontWeight.bold,fontSize:20,color: white
-      ),
-    titleMedium: TextStyle(
-      fontWeight: FontWeight.bold,fontSize: 20,color: black
-    ),
-      titleSmall: TextStyle(
-         fontSize: 15,color: grey
-      )
-  )
-  );
+          FloatingActionButtonThemeData(backgroundColor: lightBlue),
+      textTheme: TextTheme(
+          titleLarge: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 20, color: white),
+          titleMedium: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 20, color: black),
+          titleSmall: TextStyle(fontSize: 15, color: grey)));
   static ThemeData DarkTheme = ThemeData(
       primaryColor: lightBlue,
       cardColor: containerColor,
@@ -47,19 +41,13 @@ static Color containerColor=Color(0xff141922);
           unselectedItemColor: grey,
           backgroundColor: Colors.transparent,
           elevation: 0),
-      bottomAppBarColor:containerColor ,
+      bottomAppBarColor: containerColor,
       floatingActionButtonTheme:
-      FloatingActionButtonThemeData(backgroundColor: lightBlue)
-      ,textTheme: TextTheme(
-      titleLarge: TextStyle(
-          fontWeight: FontWeight.bold,fontSize:20,color: white
-      ),
-      titleMedium: TextStyle(
-          fontWeight: FontWeight.bold,fontSize: 20,color: white
-      ),
-      titleSmall: TextStyle(
-          fontSize: 15,color: white
-      )
-  )
-  );
+          FloatingActionButtonThemeData(backgroundColor: lightBlue),
+      textTheme: TextTheme(
+          titleLarge: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 20, color: white),
+          titleMedium: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 20, color: white),
+          titleSmall: TextStyle(fontSize: 15, color: white)));
 }
